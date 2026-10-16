@@ -1,0 +1,16 @@
+{
+  "name": "reductionism-vs-systems-thinking",
+  "owner": {
+    "name": "Arda Asaroglu"
+  },
+  "metadata": {
+    "description": "Two opposing lenses for product decisions, judged by a Cynefin referee."
+  },
+  "plugins": [
+    {
+      "name": "reductionism-vs-systems-thinking",
+      "source": "./",
+      "description": "A Reductionist builds the metric tree and the numbers, a Systems thinker maps the loops and who reacts, and a Cynefin referee makes one call on a tradeoff card."
+    }
+  ]
+}

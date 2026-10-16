@@ -1,0 +1,12 @@
+node_modules/
+*.log
+
+# tradeoff cards saved while trying the skill inside this repository
+tradeoff-card-*.md
+
+# editor, agent and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/settings.local.json

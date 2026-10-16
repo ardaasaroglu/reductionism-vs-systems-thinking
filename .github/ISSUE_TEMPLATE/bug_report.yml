@@ -1,0 +1,47 @@
+name: Bug report
+description: The plugin did something the README says it should not, or failed to run.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not paste a confidential decision, a card about one, an API key or a token. Reproduce the problem on one of the practice cases, or on a short fictional decision, if you can. For a security problem, use the security policy instead of an issue.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: The command or prompt you used, what you expected and what you saw.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versions
+      description: Output of `claude --version` if you use Claude Code, the plugin version, and your OS.
+      placeholder: 2.1.295 (Claude Code), reductionism-vs-systems-thinking 0.1.0, macOS 15
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where it ran
+      options:
+        - Claude Code
+        - Cowork
+        - claude.ai chat
+    validations:
+      required: true
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - decide
+        - practice
+    validations:
+      required: true
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Card or transcript excerpt
+      description: Only from a fictional decision or a practice case.
+      render: markdown

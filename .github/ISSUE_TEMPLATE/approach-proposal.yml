@@ -1,0 +1,57 @@
+name: Approach proposal
+description: Propose a pair of opposing product approaches for the roadmap.
+title: "Approach: "
+labels: ["approach-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: A pair gets on the roadmap when it is a fundamental practice with a named source (not a branded tool), has a real opposing approach, has a who-leads-when rule in plain tests, has one worked decision whose numbers check, and ends in a call. See ROADMAP.md for the full criteria.
+  - type: input
+    id: approach
+    attributes:
+      label: The approach
+      description: The practice, in a few words.
+    validations:
+      required: true
+  - type: input
+    id: opposing
+    attributes:
+      label: The approach it argues with
+      description: The practice that would decide differently on the same decision.
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: A product decision where they disagree
+      description: One real kind of decision, described with a fictional company.
+    validations:
+      required: true
+  - type: textarea
+    id: who-leads
+    attributes:
+      label: When each side should lead
+      description: Plain tests a referee can apply, such as how reversible the change is or whether people react to it.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Author and title for each side.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: A worked example
+      description: Optional. The decision worked through by both sides, with numbers that check, ending in a call.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Before you submit
+      options:
+        - label: I checked ROADMAP.md and open issues for this pair
+          required: true

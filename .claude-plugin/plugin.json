@@ -1,0 +1,26 @@
+{
+  "name": "reductionism-vs-systems-thinking",
+  "displayName": "Reductionism vs Systems Thinking",
+  "version": "0.1.0",
+  "description": "Your metric is a tree. Your product is a loop. Good calls need both. Two opposing lenses analyze a product decision on their own, argue once, and a referee grounded in Cynefin makes one call on a tradeoff card.",
+  "author": {
+    "name": "Arda Asaroglu",
+    "url": "https://github.com/ardaasaroglu"
+  },
+  "homepage": "https://github.com/ardaasaroglu/reductionism-vs-systems-thinking",
+  "repository": "https://github.com/ardaasaroglu/reductionism-vs-systems-thinking",
+  "license": "MIT",
+  "keywords": [
+    "systems-thinking",
+    "reductionism",
+    "cynefin",
+    "product-management",
+    "decision-making",
+    "tradeoffs",
+    "mental-models"
+  ],
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://github.com/ardaasaroglu/reductionism-vs-systems-thinking#readme",
+  "supportUrl": "https://github.com/ardaasaroglu/reductionism-vs-systems-thinking/issues",
+  "privacyPolicyUrl": "https://github.com/ardaasaroglu/reductionism-vs-systems-thinking/blob/main/PRIVACY.md"
+}
