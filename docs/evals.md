@@ -1,35 +1,53 @@
 # Evals
 
-The repository ships an eval suite for `claude plugin eval`. It checks three things: that a discount decision gets a full tradeoff card with a call, a domain, a revisit trigger and a loop with a delay; that a small copy change stays Complicated with the Reductionist leading, instead of being blocked by speculative loops; and that the skill starts when someone asks in plain words.
+The plugin's output is a judgment call, the hardest kind of output to test. So every case aims at one named way a tradeoff card can go wrong, every case also runs without the plugin as a baseline, code checks the structure, and a judge model checks the judgment.
 
 ## Results
 
-**Not run for v0.2.0.** The cases are written and their structure is checked by `npm test`, but the suite has not been run against a model yet, so there are no scores and no with and without delta to report. When a run is recorded, its date, Claude Code version, model, scores and delta will be added here.
+**Not run yet (v0.3.0).** The cases are written and their structure is checked by `npm test`. The first run will be published here with its date, Claude Code version, model, cost, pass rate per case, and the difference with and without the plugin.
 
-## The cases
+## Failure modes and the cases that test them
 
-| Case | Prompt | Graders | Passes when |
+| Failure mode | Case | Graders | Scored |
 |---|---|---|---|
-| `discount-card` | Should a fictional budgeting app give 20% off its annual plan | `regex` for the call, the domain and "Revisit when", `llm` judge | The card shows the arithmetic and the 25% break-even, names a loop with who reacts, a delay and a signal, and makes one call with a revisit trigger |
-| `button-copy-complicated` | Should a fictional task app change its pricing page button copy | `llm` judge | The domain is Complicated (or Clear), the Reductionist leads, the call is Go or Go with guardrails with an A/B test, and systems concerns become guardrails |
-| `natural-request-fires` | "We're thinking about raising our marketplace commission from 10% to 12%. Is that a good idea?" | `tool_used: Skill` matching `reductionism-vs-systems-thinking:decide`, scored in both arms, and a `regex` for the call | The skill starts without being named |
+| No call, only "it depends" | `discount-card`, `natural-request-fires`, `lenses-independent` | `regex`: "The call:" followed by Go, Redesign or Don't | Both arms |
+| Wrong break-even | `discount-card` | `regex` for 25%, `llm` judge | Both arms |
+| No loop with a delay | `discount-card` | `llm` judge | Both arms |
+| Loops invented for a simple change | `button-copy-complicated` | `llm` judge: Complicated, the Reductionist leads, loop concerns become guardrails | Both arms |
+| A loop labeled against its signs | Every card | `scripts/check-polarity.mjs` over the run results | By code, after the run |
+| The lenses do not run on their own | `lenses-independent` | `tool_used`: each lens agent launched; `llm` judge: numbers and a loop | Agents: indicator. Judge: both arms |
+| A mixed decision is not split | `confusion-split` | `regex` for the Confusion domain; `llm` judge: each part gets its own leader | Both arms |
+| An emergency gets analyzed instead of handled | `chaotic-act-first` | `regex` for the Chaotic domain; `llm` judge: act now, revisit when stable | Both arms |
+| The skill does not start on a plain question | `natural-request-fires` | `tool_used: Skill` | Indicator |
 
-All three prompts are fictional. The cases live in [`evals/`](../evals).
+All prompts are fictional. The cases live in [`evals/`](../evals).
+
+## How the scores work
+
+* **Baseline.** By default every case runs twice, with the plugin and without it. The headline number is the difference.
+* **Indicators.** A check that only makes sense with the plugin loaded, such as the skill firing or the lens agents launching, is an indicator: it shows in the with arm and is never scored, so it cannot inflate the difference. `tool_used: Skill` checks are indicators by default, and the agent checks are marked `arm: with-only`.
+* **Code grades structure, a judge grades judgment.** `claude plugin eval` has no custom-code graders, so `scripts/check-polarity.mjs` runs after the suite. It reads the run results and checks every loops table: each loop must close, and its R or B label must match its count of negative links. The worked cases in this repository pass the same check in `npm test`.
+* **Three runs per case** by default. Model output varies, so the pass rate counts, not one run.
+* **Checking the judge.** The `llm` graders are judged by a small model. After a run, a sample of its verdicts is graded by hand, and the agreement rate is published with the results.
+* **Grader hygiene.** `npm test` rejects any prompt or grader key that the eval docs do not list, because a mistyped grader key would fail quietly.
 
 ## Running the suite
 
-Every run makes real model calls and is billed to your Claude account or API key. In Claude Code a case runs the main conversation plus two lens agents, so one case costs a few times a single prompt. Start with one run per case and a cost ceiling:
+Every run makes real model calls under your own Claude login or API key. A case runs the skill with two lens agents, so it costs a few times a single prompt. Start lean:
 
 ```bash
 claude plugin eval . --runs 1 --no-publish --max-cost-usd 10
+node scripts/check-polarity.mjs evals/results/
 ```
 
-* By default the command also runs every case without the plugin, as a baseline, and reports the difference. Add `--ablation none` to skip the baseline runs and their cost.
+* Drop `--runs 1` for the default of three runs per case.
+* `--ablation none` skips the baseline runs and halves the cost. In the baseline arm, "Agent type ... not found" for the lens agents is expected.
 * `--threshold` defaults to 1.0, so one imperfect case makes the command exit with 1.
-* Results land in `evals/results/<timestamp>/`, which `.gitignore` keeps out of git.
+* Results land in `evals/results/`, which `.gitignore` keeps out of git.
+* The `evals` workflow in `.github/workflows/evals.yml` runs the same suite on GitHub when started by hand. It needs an `ANTHROPIC_API_KEY` repository secret, asks for a cost ceiling, never runs on push or pull request, and uploads the results.
 
-## What the checks can and cannot tell you
+## Known limits
 
-* The `llm` graders are judged by a small model unless `--judge-model` says otherwise. They catch a missing call, a missing break-even or a loop with no delay. They are a weaker test of whether the call is the right one.
-* The button copy case is the one to watch. A plugin that finds a scary loop in every decision is easy to build and useless in practice.
-* One run per case is a smoke test, not a measurement. Model output varies between runs.
+* The documented result format does not name the field that holds Claude's final reply. The polarity checker scans every string in the result files for a loops table, so it does not depend on that name. So far it has been tested on a made-up result only; the first real run will confirm it finds the cards.
+* `tool_used` counts tool calls. It shows that both lens agents ran, not that they were launched in the same message.
+* A judge model is better at checking that a call is there than that it is right. The hand-graded sample is the check on that.

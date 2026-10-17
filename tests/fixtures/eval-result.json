@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "note": "A made-up eval result in the documented shape, for tests/plugin.test.mjs. In the with arm one card passes and one labels a reinforcing loop as balancing; the without arm reply has no loops table. The field holding the reply text is not documented, so the checker does not depend on its name.",
+  "cases": [
+    {
+      "name": "discount-card",
+      "aggregates": { "score": 0.5, "delta": 0.5 },
+      "arms": {
+        "with": [
+          {
+            "finalMessage": "# Tradeoff card: a discount\n\n| Loop | Type | Links | Delay | Who reacts and why | Signal to watch |\n|---|---|---|---|---|---|\n| B1 Quick fix | B | Gap -> Discount (+), Discount -> Sales (+), Sales -> Gap (-) | Days | Buyers: a lower price tips them | Conversion rate |\n"
+          },
+          {
+            "finalMessage": "# Tradeoff card: a discount\n\n| Loop | Type | Links | Delay | Who reacts and why | Signal to watch |\n|---|---|---|---|---|---|\n| R1 Waiting | B | Gap -> Discount (+), Discount -> Waiting (+), Waiting -> Sales (-), Sales -> Gap (-) | Months | Buyers: they wait for the next deal | Full-price conversion |\n"
+          }
+        ],
+        "without": [
+          {
+            "finalMessage": "A discount usually lifts conversion. Test it first."
+          }
+        ]
+      }
+    }
+  ]
+}

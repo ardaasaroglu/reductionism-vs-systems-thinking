@@ -5,6 +5,8 @@ import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { LOOPS_HEADER, loopProblems } from "../scripts/loops.mjs";
+import { checkResult } from "../scripts/check-polarity.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const read = (path) => readFileSync(join(root, path), "utf8").replace(/\r\n/g, "\n");
@@ -221,18 +223,9 @@ test("each case is a complete card with a consistent domain and leader", () => {
 
 test("every loop closes, and its R or B matches its count of negative links", () => {
   for (const c of CASES) {
-    const rows = tableRows(read(`${CASE_DIR}/${c}.md`), "| Loop | Type | Links |");
-    assert.ok(rows.length >= 2, `${c}: at least two loops`);
-    for (const [loop, type, links] of rows) {
-      const parsed = [...links.matchAll(/(?:^|, )(.+?) -> (.+?) \(([+-])\)/g)].map((m) => ({ from: m[1], to: m[2], sign: m[3] }));
-      assert.ok(parsed.length >= 2, `${c} ${loop}: at least two links`);
-      for (let i = 0; i < parsed.length; i++) {
-        assert.equal(parsed[i].to, parsed[(i + 1) % parsed.length].from, `${c} ${loop}: link ${i + 1} leads into the next, and the last closes the loop`);
-      }
-      const negatives = (links.match(/\(-\)/g) ?? []).length;
-      assert.equal(negatives, parsed.filter((l) => l.sign === "-").length, `${c} ${loop}: every sign is parsed`);
-      assert.equal(type, negatives % 2 === 0 ? "R" : "B", `${c} ${loop}: ${negatives} negative links means ${negatives % 2 === 0 ? "R" : "B"}`);
-    }
+    const text = read(`${CASE_DIR}/${c}.md`);
+    assert.ok(tableRows(text, LOOPS_HEADER).length >= 2, `${c}: at least two loops`);
+    assert.deepEqual(loopProblems(text), [], `${c}: every loop closes and is labeled by its signs`);
   }
 });
 
@@ -322,4 +315,37 @@ test("every eval case has a prompt and typed graders", () => {
     for (const g of graders) assert.match(read(`evals/${c}/graders/${g}`), /^---\ntype: (regex|llm|tool_used)\n/, `${c}/${g}: grader type`);
   }
   assert.ok(existsSync(join(root, "docs/evals.md")), "docs/evals.md explains the evals");
+});
+
+test("the polarity checker flags eval cards whose loops break the sign rule", () => {
+  const result = checkResult(readJson("tests/fixtures/eval-result.json"));
+  const discount = result.get("discount-card (with)");
+  assert.ok(discount, "cards are labeled by case name and arm");
+  assert.equal(discount.cards, 2, "two cards found in the with arm");
+  assert.equal(discount.passed, 1, "one card passes");
+  assert.match(discount.problems.join("\n"), /2 negative links means R, but it is labeled B/);
+  assert.ok(!result.has("discount-card (without)"), "a reply with no loops table is not a card");
+});
+
+// Keys and values documented at https://code.claude.com/docs/en/plugin-evals.
+// An unknown prompt.md key is an error there; a mistyped grader key would fail quietly.
+test("eval cases and graders use only documented keys", () => {
+  const PROMPT_KEYS = ["schema_version", "name", "description", "expected_outcome", "tags", "plugins", "runs", "model", "max_turns", "timeout_seconds", "allowed_tools", "append_system_prompt", "env"];
+  const READ_ONLY_TOOLS = ["Read", "Glob", "Grep", "NotebookRead", "Skill", "AskUserQuestion", "Agent", "TodoWrite", "TaskCreate", "TaskGet", "TaskList", "TaskUpdate", "TaskStop"];
+  const GRADER_KEYS = { regex: ["pattern", "flags", "match", "target"], tool_used: ["tool", "input_match", "min", "max"], llm: ["focus"] };
+  const cases = readdirSync(join(root, "evals"), { withFileTypes: true }).filter((e) => e.isDirectory() && e.name !== "results").map((e) => e.name);
+  for (const c of cases) {
+    const prompt = frontmatter(read(`evals/${c}/prompt.md`));
+    for (const key of Object.keys(prompt)) assert.ok(PROMPT_KEYS.includes(key), `${c}: "${key}" is not a documented prompt.md key`);
+    const tools = (prompt.allowed_tools ?? "[]").replace(/[[\]\s]/g, "").split(",").filter(Boolean);
+    for (const tool of tools) assert.ok(READ_ONLY_TOOLS.includes(tool), `${c}: ${tool} needs --allow-tools, not allowed_tools`);
+    for (const g of readdirSync(join(root, "evals", c, "graders"))) {
+      const fields = frontmatter(read(`evals/${c}/graders/${g}`));
+      const allowed = ["type", "weight", "arm", ...(GRADER_KEYS[fields.type] ?? [])];
+      for (const key of Object.keys(fields)) assert.ok(allowed.includes(key), `${c}/${g}: "${key}" is not a documented ${fields.type} key`);
+      if (fields.arm) assert.ok(["with-only", "both"].includes(fields.arm), `${c}/${g}: arm is with-only or both`);
+      if (fields.match) assert.match(fields.match, /^(not_contains|count:\d+)$/, `${c}/${g}: match is not_contains or count:N`);
+      if (fields.tool === "Skill" && fields.arm === "both") assert.equal(fields.max, "0", `${c}/${g}: a positive skill check must not score the baseline arm`);
+    }
+  }
 });

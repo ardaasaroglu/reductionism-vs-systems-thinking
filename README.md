@@ -121,7 +121,7 @@ Sources and voting are in [ROADMAP.md](ROADMAP.md). To suggest a pair, use the [
 
 ## Evals
 
-[`evals/`](evals) holds three cases for `claude plugin eval`: a discount decision must get a call, a Cynefin domain, a revisit trigger and a loop with a delay; a button copy change must stay Complicated with the Reductionist leading; and a plain question must start the skill. They ship without scores for now. [docs/evals.md](docs/evals.md) explains how to run them and what they cost.
+[`evals/`](evals) holds six cases for `claude plugin eval`, each aimed at one way a tradeoff card can go wrong: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, and an emergency that gets analyzed instead of handled. Every case also runs without the plugin as a baseline. Code grades structure and a judge model grades judgment: [`scripts/check-polarity.mjs`](scripts/check-polarity.mjs) checks every loop the model writes. [docs/evals.md](docs/evals.md) has the cases, how to run them, and the results once published.
 
 ## What it reads, writes and sends
 
