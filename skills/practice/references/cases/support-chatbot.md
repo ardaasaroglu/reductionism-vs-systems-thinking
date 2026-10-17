@@ -51,13 +51,13 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  L[Ticket load] -->|+| D[Bot deflection]
-  D -->|-| L
-  L -->|+| P[Pressure to fix root causes]
-  P -->|+| X[Bug fixes]
-  X -->|-| L
-  D -->|-| R[Bug reports reaching product]
-  R -->|+| X
+  L[Ticket load] -->|"(+)"| D[Bot deflection]
+  D -->|"(-)"| L
+  L -->|"(+)"| P[Pressure to fix root causes]
+  P -->|"(+)"| X[Bug fixes]
+  X -->|"(-)"| L
+  D -->|"(-)"| R[Bug reports reaching product]
+  R -->|"(+)"| X
 ```
 
 | Loop | Type | Links | Delay | Who reacts and why | Signal to watch |

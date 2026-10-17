@@ -51,16 +51,16 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  P[Paying users] -->|+| I[Invites sent]
-  I -->|+| N[Referred signups]
-  N -->|+| P
-  I -->|-| U[Friends not yet invited]
-  U -->|+| A[Invite acceptance]
-  A -->|+| N
-  W[Reward size] -->|+| I
-  W -->|+| F[Fake referrals]
-  F -->|+| S[Reward spend]
-  S -->|-| W
+  P[Paying users] -->|"(+)"| I[Invites sent]
+  I -->|"(+)"| N[Referred signups]
+  N -->|"(+)"| P
+  I -->|"(-)"| U[Friends not yet invited]
+  U -->|"(+)"| A[Invite acceptance]
+  A -->|"(+)"| N
+  W[Reward size] -->|"(+)"| I
+  W -->|"(+)"| F[Fake referrals]
+  F -->|"(+)"| S[Reward spend]
+  S -->|"(-)"| W
 ```
 
 | Loop | Type | Links | Delay | Who reacts and why | Signal to watch |

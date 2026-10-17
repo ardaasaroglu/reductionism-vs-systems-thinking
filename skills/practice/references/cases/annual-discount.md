@@ -48,12 +48,12 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  G[Conversion gap] -->|+| D[Discount offers]
-  D -->|+| A[Annual conversions]
-  A -->|-| G
-  D -->|+| E[Customers expecting a discount]
-  E -->|-| F[Full-price conversions]
-  F -->|-| G
+  G[Conversion gap] -->|"(+)"| D[Discount offers]
+  D -->|"(+)"| A[Annual conversions]
+  A -->|"(-)"| G
+  D -->|"(+)"| E[Customers expecting a discount]
+  E -->|"(-)"| F[Full-price conversions]
+  F -->|"(-)"| G
 ```
 
 | Loop | Type | Links | Delay | Who reacts and why | Signal to watch |

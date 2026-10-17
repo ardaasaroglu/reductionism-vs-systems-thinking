@@ -15,7 +15,7 @@ const REPO = `https://github.com/ardaasaroglu/${NAME}`;
 const SKILLS = ["decide", "practice"];
 const AGENTS = ["reductionist", "systems-thinker"];
 const DOMAINS = ["Clear", "Complicated", "Complex", "Chaotic", "Confusion"];
-const CASES = ["annual-discount", "onboarding-steps", "referral-reward", "support-chatbot"];
+const CASES = ["annual-discount", "onboarding-steps", "referral-reward", "support-chatbot", "daily-push", "take-rate", "cta-copy", "feature-parity"];
 const CASE_DIR = "skills/practice/references/cases";
 const CREDIT = "Cynefin is Dave Snowden's framework. This project is independent and not affiliated with The Cynefin Company.";
 const CARD_SECTIONS = [
@@ -301,4 +301,25 @@ test("shipped text keeps local paths, emails, keys and the old name out", () => 
     for (const [re, what] of patterns) if (re.test(text)) problems.push(`${file}: ${what}`);
   }
   assert.deepEqual(problems, []);
+});
+
+test("the README hero image is a PNG shown with Markdown image syntax", () => {
+  const m = read("README.md").match(/!\[[^\]]+\]\((docs\/assets\/[^)]+\.png)\)/);
+  assert.ok(m, "README shows a hero image with Markdown image syntax");
+  const png = readFileSync(join(root, m[1]));
+  assert.equal(png.subarray(1, 4).toString("latin1"), "PNG", "hero image is a PNG");
+});
+
+test("every eval case has a prompt and typed graders", () => {
+  const cases = readdirSync(join(root, "evals"), { withFileTypes: true })
+    .filter((e) => e.isDirectory() && e.name !== "results")
+    .map((e) => e.name);
+  assert.ok(cases.length >= 3, "at least three eval cases");
+  for (const c of cases) {
+    assert.ok(existsSync(join(root, "evals", c, "prompt.md")), `${c}: prompt.md`);
+    const graders = readdirSync(join(root, "evals", c, "graders")).filter((f) => f.endsWith(".md"));
+    assert.ok(graders.length >= 1, `${c}: at least one grader`);
+    for (const g of graders) assert.match(read(`evals/${c}/graders/${g}`), /^---\ntype: (regex|llm|tool_used)\n/, `${c}/${g}: grader type`);
+  }
+  assert.ok(existsSync(join(root, "docs/evals.md")), "docs/evals.md explains the evals");
 });

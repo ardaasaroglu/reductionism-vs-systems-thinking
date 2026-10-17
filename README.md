@@ -4,6 +4,8 @@
 
 A Claude plugin for product decisions. Two opposing lenses look at the same call on their own. The Reductionist zooms in: a metric tree, Fermi numbers, a break-even and the cleanest test. The Systems thinker zooms out: feedback loops, delays, who reacts and why. They argue once. Then a referee grounded in Cynefin decides which lens leads for this decision and makes exactly one call: Go, Go with guardrails, Redesign, or Don't.
 
+![A tradeoff card for 20% off the annual plan: the call, the Cynefin domain, a metric tree and a loop map](docs/assets/tradeoff-card.png)
+
 ## An example: 20% off the annual plan
 
 A fictional bookkeeping app wants to lift conversion with 20% off its annual plan.
@@ -14,12 +16,12 @@ The Systems thinker draws the loops. The discount closes the conversion gap fast
 
 ```mermaid
 flowchart LR
-  G[Conversion gap] -->|+| D[Discount offers]
-  D -->|+| A[Annual conversions]
-  A -->|-| G
-  D -->|+| E[Customers expecting a discount]
-  E -->|-| F[Full-price conversions]
-  F -->|-| G
+  G[Conversion gap] -->|"(+)"| D[Discount offers]
+  D -->|"(+)"| A[Annual conversions]
+  A -->|"(-)"| G
+  D -->|"(+)"| E[Customers expecting a discount]
+  E -->|"(-)"| F[Full-price conversions]
+  F -->|"(-)"| G
 ```
 
 The referee places the decision in the Complex domain: customers react, the effect loops back with a delay, and the outcome lands after the test window. So the Systems thinker leads and the Reductionist sizes the probe. The call is **Go with guardrails**: a targeted, time-boxed offer, a holdout that never sees a discount, and a guardrail on 90-day full-price conversion. Measure the part, watch the loop.
@@ -46,6 +48,10 @@ The referee places a decision with five tests (separability, feedback with delay
 | [Cut onboarding from 5 steps to 3](skills/practice/references/cases/onboarding-steps.md) | Complicated | Reductionist |
 | [Double the referral reward](skills/practice/references/cases/referral-reward.md) | Confusion | Split: Reductionist for reward economics, Systems thinker for fraud and saturation |
 | [A chatbot to deflect support tickets](skills/practice/references/cases/support-chatbot.md) | Complex | Systems thinker |
+| [A daily push notification](skills/practice/references/cases/daily-push.md) | Complex | Systems thinker |
+| [Raise the marketplace take rate](skills/practice/references/cases/take-rate.md) | Complex | Systems thinker |
+| [Rewrite the pricing page button](skills/practice/references/cases/cta-copy.md) | Complicated | Reductionist |
+| [Match a rival's feature list](skills/practice/references/cases/feature-parity.md) | Complex | Systems thinker |
 
 ## Install
 
@@ -112,6 +118,10 @@ Ranked for the AI era by how often product people face the decision and how much
 | 24 | Build vs Buy by evolution stage | Is this layer turning into a commodity | Candidate |
 
 Sources and voting are in [ROADMAP.md](ROADMAP.md). To suggest a pair, use the [approach proposal form](https://github.com/ardaasaroglu/reductionism-vs-systems-thinking/issues/new?template=approach-proposal.yml).
+
+## Evals
+
+[`evals/`](evals) holds three cases for `claude plugin eval`: a discount decision must get a call, a Cynefin domain, a revisit trigger and a loop with a delay; a button copy change must stay Complicated with the Reductionist leading; and a plain question must start the skill. They ship without scores for now. [docs/evals.md](docs/evals.md) explains how to run them and what they cost.
 
 ## What it reads, writes and sends
 

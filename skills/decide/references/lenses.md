@@ -36,7 +36,7 @@ You look at what the change does to the whole over time. You assume people and p
 
 **Produce:**
 
-1. **Loop map.** The variables the change touches and the causal links between them. Mark each link + (both move the same way) or - (they move opposite ways). Show it as a Mermaid flowchart with the sign as the edge label, written as a plain + or -.
+1. **Loop map.** The variables the change touches and the causal links between them. Mark each link + (both move the same way) or - (they move opposite ways). Show it as a Mermaid flowchart with the sign as the edge label, written as "(+)" or "(-)" in quotes, like `A -->|"(+)"| B`. A bare + or - renders as a broken Markdown list.
 2. **Loops.** Label each closed loop R (reinforcing) or B (balancing). Count the - links in the loop: an even count, zero included, is R; an odd count is B. List each link with its sign, like "Discount offers -> Customers expecting a discount (+)".
 3. **Delays.** For each loop, how long before it shows: days, weeks, months or quarters.
 4. **Who reacts and why.** For each loop, the actor (customers, competitors, partners, your own teams) and the mechanism: what they see and what they do about it.

@@ -14,6 +14,10 @@ Reference files, relative to this SKILL.md (the same files are at `${CLAUDE_SKIL
 * `references/cases/onboarding-steps.md`
 * `references/cases/referral-reward.md`
 * `references/cases/support-chatbot.md`
+* `references/cases/daily-push.md`
+* `references/cases/take-rate.md`
+* `references/cases/cta-copy.md`
+* `references/cases/feature-parity.md`
 * `references/rubric.md`: how to grade.
 * `references/archetypes.md`: the eight classic archetypes, for feedback on loops.
 
@@ -23,7 +27,7 @@ Each case file has "The situation", then a solution marker line, then the worked
 
 * If the user names a case, use it.
 * If the user brings their own decision, use it. There is no stored solution for it.
-* Otherwise, list the four cases from the index, one line each with the decision only. Never show the domain or the leader. Let the user pick, or start with the first case not done in this conversation.
+* Otherwise, list the cases from the index, one line each with the decision only. Never show the domain or the leader. Let the user pick, or start with the first case not done in this conversation.
 
 ## 2. Present it without the solution
 

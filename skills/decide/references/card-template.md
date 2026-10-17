@@ -31,8 +31,8 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  A[Variable A] -->|+| B[Variable B]
-  B -->|-| A
+  A[Variable A] -->|"(+)"| B[Variable B]
+  B -->|"(-)"| A
 ```
 
 | Loop | Type | Links | Delay | Who reacts and why | Signal to watch |

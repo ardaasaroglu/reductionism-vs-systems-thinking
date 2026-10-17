@@ -51,15 +51,15 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  A[Activated accounts] -->|+| I[Teammates invited]
-  I -->|+| S[Signups]
-  S -->|+| A
-  O[Onboarding steps] -->|+| C[Contacts imported]
-  C -->|+| I
-  C -->|-| E[Accounts with an empty schedule]
-  E -->|+| T[Empty schedule tickets]
-  T -->|+| F[Team time on setup fixes]
-  F -->|-| E
+  A[Activated accounts] -->|"(+)"| I[Teammates invited]
+  I -->|"(+)"| S[Signups]
+  S -->|"(+)"| A
+  O[Onboarding steps] -->|"(+)"| C[Contacts imported]
+  C -->|"(+)"| I
+  C -->|"(-)"| E[Accounts with an empty schedule]
+  E -->|"(+)"| T[Empty schedule tickets]
+  T -->|"(+)"| F[Team time on setup fixes]
+  F -->|"(-)"| E
 ```
 
 | Loop | Type | Links | Delay | Who reacts and why | Signal to watch |
