@@ -9,15 +9,18 @@ Plotwick is a fictional project planning tool for small teams. Its pricing page 
 * Design wants the button to say "Try it free for 14 days, no card needed".
 * Marketing worries that a softer promise will bring in people who were only browsing.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: rewrite the pricing page button
 
 * **The call:** Go: test the new copy against the old for about 6 weeks and keep the winner.
+* **The need:** more paying customers from the pricing page, through design's ask to say "Try it free for 14 days, no card needed".
 * **Domain:** Complicated (Cynefin): one button changes, the effect shows within days, nobody outside the company reacts, and a clean A/B test can read it.
 * **Who leads:** Reductionist because the separability, time horizon and reactors tests all point to analysis. The Systems thinker's concern about trial quality becomes a guardrail.
+* **Deciding input:** the click lift. Assumed: 5% to 20%, from 4% to between 4.2% and 4.8%. Trial to paid must stay at 13.6% or more for the base case to gain.
+* **Assumption share:** 2 of 4 inputs assumed (the click lift and trial quality; visitors and signup completion are given). The 6-week test measures the first, and the guardrail watches the second.
 * **What we give up:** half the traffic stays on the weaker copy for 6 weeks: at most about 27 customers if the high case is true (36 a month x 50% x 1.5 months).
 * **Revisit when:** the test reaches about 39,400 visitors per arm, or at once if trial to paid in the new arm falls below 13.6%.
 

@@ -10,15 +10,18 @@ Kitewell is a fictional shift scheduling app for small teams. New accounts go th
 * Activated accounts invite 2.5 teammates in their first 14 days, and 60% are still active in week 4. Support gets 8 tickets about empty schedules per 1,000 new accounts.
 * Product wants to cut onboarding to 3 steps by moving Import contacts and Pick a theme into the app, after the first schedule.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: Cut onboarding from 5 steps to 3
 
 * **The call:** Go with guardrails: test the 3-step flow on half of signups and keep it if activation rises at least 10% while activation quality holds.
+* **The need:** more signups reaching a first schedule within 7 days, through product's ask to "cut onboarding to 3 steps".
 * **Domain:** Complicated (Cynefin): the effect separates step by step, users do not adapt their behaviour to the number of steps, nothing shared is drawn down, and both activation (7 days) and week-4 retention land inside a 7-week read.
 * **Who leads:** Reductionist because the separability and time horizon tests pass: funnel math predicts most of the effect and a short test confirms it. The Systems thinker's loops become guardrails.
+* **Deciding input:** the step 5 pass rate after the cut. Assumed: 50% to 70%. Activation holds at 34% while it stays at 47% or more.
+* **Assumption share:** 1 of 6 inputs assumed (the five step rates today are given). The call holds across the range: even the low case, 50%, is above the 47% break-even.
 * **What we give up:** contacts imported up front, which can make first schedules emptier, and 7 weeks before the result is final.
 * **Revisit when:** week 7 of the test (3 weeks of signups, then 4 weeks to read retention), or at once on a guardrail breach.
 

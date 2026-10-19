@@ -17,7 +17,7 @@ const REPO = `https://github.com/ardaasaroglu/${NAME}`;
 const SKILLS = ["decide", "practice"];
 const AGENTS = ["reductionist", "systems-thinker"];
 const DOMAINS = ["Clear", "Complicated", "Complex", "Chaotic", "Confusion"];
-const CASES = ["annual-discount", "onboarding-steps", "referral-reward", "support-chatbot", "daily-push", "take-rate", "cta-copy", "feature-parity"];
+const CASES = ["annual-discount", "onboarding-steps", "referral-reward", "support-chatbot", "daily-push", "take-rate", "cta-copy", "feature-parity", "partner-lead"];
 const CASE_DIR = "skills/practice/references/cases";
 const CREDIT = "Cynefin is Dave Snowden's framework. This project is independent and not affiliated with The Cynefin Company.";
 const CARD_SECTIONS = [
@@ -25,6 +25,9 @@ const CARD_SECTIONS = [
   "* **The call:** ",
   "* **Domain:** ",
   "* **Who leads:** ",
+  "* **The need:** ",
+  "* **Deciding input:** ",
+  "* **Assumption share:** ",
   "* **What we give up:** ",
   "* **Revisit when:** ",
   "## Reductionism (zoom in)",
@@ -34,6 +37,18 @@ const CARD_SECTIONS = [
   "## The call",
   "## Assumptions to check",
 ];
+// The short card, when the gate stops before the lenses: Get X first.
+const GET_SECTIONS = [
+  "# Tradeoff card: ",
+  "* **The call:** Get ",
+  "* **The need:** ",
+  "* **Why it decides:** ",
+  "* **What to ask:** ",
+  "* **Thresholds:** ",
+  "* **Off-need:** ",
+  "* **Revisit when:** ",
+];
+const gated = (text) => /^\* \*\*The call:\*\* Get /m.test(text);
 
 // Minimal frontmatter reader: `key: value` lines between the first two `---` lines.
 function frontmatter(text) {
@@ -199,13 +214,20 @@ test("both archetype copies are identical and list eight archetypes", () => {
 
 test("each case is a complete card with a consistent domain and leader", () => {
   const template = read("skills/decide/references/card-template.md");
-  for (const s of CARD_SECTIONS) assert.ok(template.includes(s), `card-template.md has ${s}`);
+  for (const s of [...CARD_SECTIONS, ...GET_SECTIONS]) assert.ok(template.includes(s), `card-template.md has ${s}`);
   const index = read(`${CASE_DIR}/README.md`);
   for (const c of CASES) {
     const text = read(`${CASE_DIR}/${c}.md`);
-    for (const s of CARD_SECTIONS) assert.ok(text.includes(s), `${c}: has ${s}`);
     assert.ok(text.indexOf("<!-- solution") > text.indexOf("## The situation"), `${c}: situation comes before the solution marker`);
     assert.ok(text.indexOf("# Tradeoff card: ") > text.indexOf("<!-- solution"), `${c}: card comes after the marker`);
+    const row = index.split("\n").find((l) => l.includes(`(${c}.md)`));
+    assert.ok(row, `cases/README.md lists ${c}`);
+    if (gated(text)) {
+      for (const s of GET_SECTIONS) assert.ok(text.includes(s), `${c}: the short card has ${s}`);
+      assert.match(row.split("|")[3].trim(), /^Not placed/, `cases/README.md says ${c} stopped at the gate`);
+      continue;
+    }
+    for (const s of CARD_SECTIONS) assert.ok(text.includes(s), `${c}: has ${s}`);
     assert.ok((text.match(/```mermaid/g) ?? []).length >= 2, `${c}: two Mermaid blocks`);
     const domain = text.match(/^\* \*\*Domain:\*\* (\w+) \(Cynefin\)/m)?.[1];
     assert.ok(DOMAINS.includes(domain), `${c}: Domain line names a Cynefin domain`);
@@ -213,8 +235,6 @@ test("each case is a complete card with a consistent domain and leader", () => {
     if (domain === "Complex") assert.match(leads, /^Systems thinker\b/, `${c}: Complex means the Systems thinker leads`);
     if (domain === "Complicated") assert.match(leads, /^Reductionist\b/, `${c}: Complicated means the Reductionist leads`);
     if (domain === "Confusion") assert.ok(/^split/i.test(leads) && leads.includes("Reductionist") && leads.includes("Systems thinker"), `${c}: Confusion splits the lead`);
-    const row = index.split("\n").find((l) => l.includes(`(${c}.md)`));
-    assert.ok(row, `cases/README.md lists ${c}`);
     assert.equal(row.split("|")[3].trim(), domain, `cases/README.md domain for ${c}`);
   }
   const files = readdirSync(join(root, CASE_DIR)).filter((f) => f !== "README.md").map((f) => f.replace(/\.md$/, ""));
@@ -224,6 +244,7 @@ test("each case is a complete card with a consistent domain and leader", () => {
 test("every loop closes, and its R or B matches its count of negative links", () => {
   for (const c of CASES) {
     const text = read(`${CASE_DIR}/${c}.md`);
+    if (gated(text)) continue;
     assert.ok(tableRows(text, LOOPS_HEADER).length >= 2, `${c}: at least two loops`);
     assert.deepEqual(loopProblems(text), [], `${c}: every loop closes and is labeled by its signs`);
   }

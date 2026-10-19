@@ -2,7 +2,7 @@
 
 **Your metric is a tree. Your product is a loop. Good calls need both.**
 
-A Claude plugin for product decisions. Two opposing lenses look at the same call on their own. The Reductionist zooms in: a metric tree, Fermi numbers, a break-even and the cleanest test. The Systems thinker zooms out: feedback loops, delays, who reacts and why. They argue once. Then a referee grounded in Cynefin decides which lens leads for this decision and makes exactly one call: Go, Go with guardrails, Redesign, or Don't.
+A Claude plugin for product decisions. Two opposing lenses look at the same call on their own. The Reductionist zooms in: a metric tree, Fermi numbers, a break-even and the cleanest test. The Systems thinker zooms out: feedback loops, delays, who reacts and why. They argue once. Then a referee grounded in Cynefin decides which lens leads for this decision and makes exactly one call: Go, Go with guardrails, Redesign, Don't, or Get X first when one cheap fact would settle it.
 
 ![A tradeoff card for 20% off the annual plan: the call, the Cynefin domain, a metric tree and a loop map](docs/assets/tradeoff-card.png)
 
@@ -40,6 +40,17 @@ The full card: [annual-discount.md](skills/practice/references/cases/annual-disc
 
 The referee places a decision with five tests (separability, feedback with delay, reactors, shared things, time horizon), and reversibility sets the step size: a change you can undo in a day ships in one step, while a change customers remember moves in small, time-boxed steps.
 
+## Before the lenses: the gate
+
+The full card is not always worth its cost, so three checks run first.
+
+* **Frame check.** The need goes on the card in the requester's own words. Each option is tested against those words, and an option that misses them is marked off-need and never picked.
+* **Input gate.** The card names the one fact that decides between the options. If nobody knows it and one question would find it out, the call is **Get X first**: a short card with the question, ready to send, and the threshold for each option.
+* **Assumption share.** The referee says how many inputs are assumed and reruns the call across their range. If the call flips, it asks for the fact first, or sets a probe that measures it.
+* **Lite mode.** A quick take is one pass with no lens agents: one number, one loop, one call.
+
+These came from the first real use. The full method ran on a partner lead where nobody knew the partner's volume. The card looked precise but stood on stacked assumptions, its pick did not answer what the partner had asked for, and one qualifying question would have reached the same next step.
+
 ## Gallery
 
 | Case | Domain | Who leads |
@@ -52,6 +63,7 @@ The referee places a decision with five tests (separability, feedback with delay
 | [Raise the marketplace take rate](skills/practice/references/cases/take-rate.md) | Complex | Systems thinker |
 | [Rewrite the pricing page button](skills/practice/references/cases/cta-copy.md) | Complicated | Reductionist |
 | [Match a rival's feature list](skills/practice/references/cases/feature-parity.md) | Complex | Systems thinker |
+| [A partner asks for two-way text reminders](skills/practice/references/cases/partner-lead.md) | Not placed: stopped at the gate | Nobody yet: get the volume first |
 
 ## Install
 
@@ -70,8 +82,9 @@ Then run `/reductionism-vs-systems-thinking:decide` with your decision, or just 
 
 * **Claude Code and Cowork:** the two lens agents run in parallel, each with only Read, Grep and Glob. Neither sees the other's answer before the clash.
 * **claude.ai chat:** the lenses run one after another in the same conversation, and the Systems thinker works as if it had not seen the Reductionist's conclusion.
+* **Quick takes:** ask for a quick take, or pass `--lite`, for one pass with no lens agents.
 
-In every case the clash and the referee run in the main conversation, and the reply is one tradeoff card.
+In every case the gate, the clash and the referee run in the main conversation, and the reply is one tradeoff card.
 
 ## Example prompts
 
@@ -80,10 +93,12 @@ In every case the clash and the referee run in the main conversation, and the re
 * `We want to raise the Pro plan from $12 to $15 a month. What happens now and in two quarters?`
 * `Should we double the referral reward? Think about second-order effects.`
 * `Our support queue keeps growing. Should we add a chatbot or hire two more agents?`
+* `A partner wants our app under their brand. Options: white-label it, build them a custom app, or license our API. Which one?`
+* `Quick take: should we add dark mode? Users ask for it every week.`
 
 ## Practice mode
 
-`/reductionism-vs-systems-thinking:practice` gives you a case without the answer. You write your reasoning, a Cynefin domain, who leads and one call. It grades you on Reductionism, Systems thinking and Referee, from 0 to 4 each with specific feedback, then shows the worked card. Bring your own decision to practice on it instead.
+`/reductionism-vs-systems-thinking:practice` gives you a case without the answer. You write your reasoning, a Cynefin domain, who leads and one call. It grades you on the Gate (0 to 3) and on Reductionism, Systems thinking and Referee (0 to 4 each), with specific feedback, then shows the worked card. Bring your own decision to practice on it instead.
 
 ## Approaches we are considering
 
@@ -121,7 +136,7 @@ Sources and voting are in [ROADMAP.md](ROADMAP.md). To suggest a pair, use the [
 
 ## Evals
 
-[`evals/`](evals) holds six cases for `claude plugin eval`, each aimed at one way a tradeoff card can go wrong: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, and an emergency that gets analyzed instead of handled. Every case also runs without the plugin as a baseline. Code grades structure and a judge model grades judgment: [`scripts/check-polarity.mjs`](scripts/check-polarity.mjs) checks every loop the model writes. [docs/evals.md](docs/evals.md) has the cases, how to run them, and the results once published.
+[`evals/`](evals) holds ten cases for `claude plugin eval`, each aimed at one way a tradeoff card can go wrong: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, an emergency that gets analyzed instead of handled, an option picked that misses the stated need, a full card where one question would do, a call that hides how much of it is assumed, and a quick take that runs the full method. Every case also runs without the plugin as a baseline. Code grades structure and a judge model grades judgment: [`scripts/check-polarity.mjs`](scripts/check-polarity.mjs) checks every loop the model writes. [docs/evals.md](docs/evals.md) has the cases, how to run them, and the results once published.
 
 ## What it reads, writes and sends
 

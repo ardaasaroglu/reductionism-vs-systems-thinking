@@ -9,15 +9,18 @@ Fernbook is a fictional bookkeeping app for freelancers. It sells a monthly plan
 * Monthly buyers pay for about 8 months in their first year.
 * Growth wants to show 20% off the annual plan ($192 a year) to every trial user, to lift conversion.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: 20% off the annual plan
 
 * **The call:** Go with guardrails: a targeted, time-boxed offer with a never-discounted holdout, not a standing discount for everyone.
+* **The need:** "to lift conversion" (growth).
 * **Domain:** Complex (Cynefin): customers react by learning to wait for deals, the effect feeds back with a delay of one to two quarters, price is a signal every buyer shares, and the cost lands after a short test ends.
 * **Who leads:** Systems thinker because the reactors, feedback with delay and time horizon tests all point outside what a short test can see. The Reductionist sizes the probe and its thresholds.
+* **Deciding input:** how much the trial to annual rate rises at $192. Assumed: up 10% to 33%, against the 25% it needs to break even. Only an offer reveals it.
+* **Assumption share:** 1 of 3 inputs assumed (trial starts and the 7.5% rate are given). The money flips inside the range, from a $8,640 monthly loss to a $4,800 gain, and only acting can measure it, so the call is a capped probe, not a launch.
 * **What we give up:** the simple read of a sitewide test, and up to about $6,900 a month of annual bookings during the probe if the low case is true (80% of the low-case $8,640).
 * **Revisit when:** the 12-week probe ends, or at once if the holdout's 90-day full-price conversion falls below 23%.
 

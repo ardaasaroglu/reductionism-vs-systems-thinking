@@ -1,8 +1,12 @@
 # Changelog
 
-## 0.3.0 (2026-10-17)
+## 0.3.0 (2026-10-20)
 
-* The eval suite now aims each case at a named failure mode: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, and an emergency that gets analyzed instead of handled. Six cases, up from three.
+* A gate before the lenses, from the first real use: a frame check tests every option against the requester's own words and never picks one that misses them; an input gate names the fact that decides the call and returns a short Get X first card when one question would find it out; the referee states how much of the call is assumed and whether it flips across the plausible range; and a lite mode runs one pass with no lens agents.
+* Get X first joins Go, Go with guardrails, Redesign and Don't as a fifth call. The card template has three shapes: full, short and lite.
+* Every worked case now quotes the need, names the deciding input and states its assumption share. A ninth case, a fictional partner lead, stops at the gate.
+* The practice rubric grades the gate, out of 15 in total.
+* The eval suite now aims each case at a named failure mode: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, an emergency that gets analyzed instead of handled, an option picked that misses the stated need, a full card where one question would do, a call that hides how much of it is assumed, and a quick take that runs the full method. Ten cases, up from three.
 * `scripts/check-polarity.mjs` checks every card the model writes during an eval run: each loop must close and carry the R or B label its signs give it. The worked cases go through the same check in `npm test`.
 * A manual-only `evals` workflow runs the suite on GitHub with a cost ceiling.
 

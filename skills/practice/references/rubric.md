@@ -1,6 +1,12 @@
 # Practice rubric
 
-Score each area from 0 to 4, one point per line met. The total is out of 12.
+Score each area, one point per line met: the Gate from 0 to 3, the other three from 0 to 4. The total is out of 15. For a case that stops at the gate, score the Gate and the Referee's call line only, and give the total out of 4.
+
+## Gate (0 to 3)
+
+* The need in the requester's own words, and each option checked against it. An option that misses the need is flagged and never picked.
+* The deciding input named, and marked given or assumed.
+* When that input is cheap to find out and decides the call: a question ready to send and a threshold for each option, instead of a full analysis. When only acting reveals it: the probe that will measure it.
 
 ## Reductionism (0 to 4)
 
@@ -20,12 +26,12 @@ Score each area from 0 to 4, one point per line met. The total is out of 12.
 
 * A Cynefin domain that matches the worked card, or a different domain defended with the five tests (separability, feedback with delay, reactors, shared things, time horizon).
 * A leader that matches the domain: Reductionist for Complicated, Systems thinker for Complex, a split for Confusion.
-* Exactly one call: Go, Go with guardrails, Redesign, or Don't. "It depends" scores 0 on this line.
+* Exactly one call: Go, Go with guardrails, Redesign, Don't, or Get X first, with how much of it is assumed and where it would flip. "It depends" scores 0 on this line.
 * The lens that does not lead turned into guardrails, a holdout or a revisit trigger.
 
 ## Feedback format
 
-* **Score:** Reductionism x/4, Systems thinking x/4, Referee x/4, total x/12.
+* **Score:** Gate x/3, Reductionism x/4, Systems thinking x/4, Referee x/4, total x/15.
 * **Strongest point:** one line.
 * **Per area:** one to three lines each, quoting the user's own words, with the exact fix.
 * **Practice next:** one line.

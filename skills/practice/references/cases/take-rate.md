@@ -10,15 +10,18 @@ Kilnyard is a fictional marketplace for handmade ceramics. It keeps a 10% take r
 * 3% of sellers stop selling each month.
 * Finance wants to raise the take rate from 10% to 12%.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: raise the marketplace take rate
 
 * **The call:** Redesign: a tiered rate, 12% on each seller's first $2,000 of monthly sales and 10% above that, instead of a flat 12%.
+* **The need:** more revenue, through finance's ask to "raise the take rate from 10% to 12%".
 * **Domain:** Complex (Cynefin): top sellers have other places to sell and react to the fee, buyers follow the choice of pieces, and the loss shows up months after revenue goes up.
 * **Who leads:** Systems thinker because the reactors, feedback with delay and shared things tests point to effects a revenue forecast cannot see. The Reductionist sizes the tiers and the probe.
+* **Deciding input:** how much GMV top sellers move away at 12%. Assumed: a fall of 3% to 15%, against the 16.7% that would erase the gain. How many top sellers already sell elsewhere can be checked first.
+* **Assumption share:** 1 of 4 inputs assumed (GMV, the seller split and the rate are given). A flat 12% stays positive across the range at first, but the loops play out after a test window, so the call caps the exposure with tiers.
 * **What we give up:** about $52,000 a month against a flat 12% if GMV held ($100,000 against $48,000).
 * **Revisit when:** the 12-week probe ends, or at once if top sellers' GMV in the probe categories falls 5% or more against the other categories.
 

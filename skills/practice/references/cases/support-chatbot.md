@@ -10,15 +10,18 @@ Tallyport is a fictional invoicing app for small businesses.
 * Support files about 40 bug reports a month to the product team, from ticket themes.
 * Support wants the chatbot in front of all tickets, to deflect as many as it can.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: A chatbot to deflect support tickets
 
 * **The call:** Go with guardrails: a bot for how-to questions only, with bug-shaped tickets kept with people and a holdout, not a bot in front of everything.
+* **The need:** "to deflect as many as it can" (support), to cut a $72,000 monthly support bill.
 * **Domain:** Complex (Cynefin): the product team reacts to what support tells it, customers adapt to the bot, the bug loop feeds back over quarters, and the cost of unfixed bugs lands after a 4-week test.
 * **Who leads:** Systems thinker because the reactors, feedback with delay and time horizon tests point to the bug loop, which a deflection test cannot see. The Reductionist sizes the probe and its thresholds.
+* **Deciding input:** the share of tickets the bot deflects. Assumed: 15% to 45%. It pays for itself above 12.2% across all tickets, or 24% on how-to questions only.
+* **Assumption share:** 1 of 4 inputs assumed (tickets, cost per ticket and the vendor price are given). The money holds across the range, so the call turns on the loop: bug reports that stop reaching the product team.
 * **What we give up:** the full-rollout saving of up to $23,600 a month in the high case, for a probe that saves about $6,000 a month while the bug loop is checked.
 * **Revisit when:** the end of quarter 2, or at once if bug reports from support fall below 40 a month or repeat contacts within 7 days pass 10%.
 

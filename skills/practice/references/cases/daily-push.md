@@ -9,15 +9,18 @@ Mintpotter is a fictional recipe and meal-planning app. It sends 2 push notifica
 * Each push makes about 0.05% of the people who get it turn push off.
 * Growth wants a daily "tonight's dinner idea" push for everyone with push on, to lift weekly active users.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: a daily push notification
 
 * **The call:** Redesign: an opt-in daily reminder at a time the user picks, and a cap of 4 pushes a week per user across all teams, tested against a holdout. Not a daily push for everyone.
+* **The need:** "to lift weekly active users" (growth).
 * **Domain:** Complex (Cynefin): users adapt by tuning out or turning push off, the cost builds over weeks while a short test sees the novelty, and attention is shared by every team that sends a push.
 * **Who leads:** Systems thinker because the reactors, feedback with delay and shared things tests all point past what a 2-week test can see. The Reductionist sizes the probe and its thresholds.
+* **Deciding input:** how fast push fatigue builds: the open rate per push and opt-outs per push after week 4. Assumed: opt-outs stay at 0.05% per push or double. Only acting reveals it.
+* **Assumption share:** 2 of 4 inputs assumed (the push-driven rate at 7 a week, and fatigue). The direct numbers stay positive even if opt-outs double, so the call turns on the loop, which only a probe can measure.
 * **What we give up:** up to about 4,800 extra weekly actives in the first weeks (the base case), if a daily push for everyone would have held up.
 * **Revisit when:** the 8-week probe ends, or at once if opt-outs pass 0.15% of recipients on any push.
 

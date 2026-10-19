@@ -9,15 +9,18 @@ Ledgerbird is a fictional invoicing app for small agencies. 2,000 agencies pay $
 * Billcove, a fictional and larger rival, was in 60 of the deals: Ledgerbird won 35 and lost 25, and in all 25 the buyer named a missing feature. Billcove ships about 8 new features a quarter.
 * The CEO wants to match Billcove's list: 12 missing features, about 2 quarters of the whole 10-engineer team.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: match a rival's feature list
 
 * **The call:** Don't. Fix invoice sync next quarter, and probe the single most-cited missing feature.
+* **The need:** stop losing deals to the rival, through the CEO's ask to "match Billcove's list".
 * **Domain:** Complex (Cynefin): the rival reacts to every move, the race feeds itself, and the cost of neglecting reliability lands quarters later.
 * **Who leads:** Systems thinker because the reactors, feedback with delay and time horizon tests all point past the next quarter's deals. The Reductionist sizes both options.
+* **Deciding input:** how many of the 25 losses parity would win back. Assumed: 5 to 12 a quarter, against the 18 it needs to beat the sync fix. Calling 5 of those buyers would check it cheaply.
+* **Assumption share:** 1 of 5 inputs assumed. The call holds across the range, since even the high case, 12, is below the 18 needed, so it does not wait for those calls.
 * **What we give up:** the deals a missing feature truly decides, about 8 a quarter in the base case, $1,200 of MRR, and the sales line "we have everything they have".
 * **Revisit when:** sync-related churn falls below 0.3% a month, or the win rate against the rival falls below 50% for a quarter.
 

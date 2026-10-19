@@ -12,3 +12,4 @@ Fictional companies, real tradeoffs. Each case has the situation, a solution mar
 | [take-rate.md](take-rate.md) | Raise the marketplace take rate | Complex | Systems thinker |
 | [cta-copy.md](cta-copy.md) | Rewrite the pricing page button | Complicated | Reductionist |
 | [feature-parity.md](feature-parity.md) | Match a rival's feature list | Complex | Systems thinker |
+| [partner-lead.md](partner-lead.md) | A partner asks for two-way text reminders | Not placed: stopped at the gate | Nobody yet: get the volume first |

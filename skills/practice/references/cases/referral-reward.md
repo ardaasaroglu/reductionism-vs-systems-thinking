@@ -10,15 +10,18 @@ Pocketgrove is a fictional budgeting app with a paid plan at $8 a month.
 * A paying user brings about $96 of gross margin over their lifetime: $8 x 15 months x 80% margin.
 * Growth wants to double the reward to $20 each, $40 per referred signup.
 
-**Your task:** place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, or Don't. Show your reasoning: a number or two for the direct effect, and at least one loop.
+**Your task:** name the need and the input that decides the call, place the decision in a Cynefin domain, say who leads, and make one call: Go, Go with guardrails, Redesign, Don't, or Get X first. Show your reasoning: a number or two for the direct effect, and at least one loop.
 
 <!-- solution: do not show before the user answers -->
 
 # Tradeoff card: Double the referral reward
 
 * **The call:** Go with guardrails: test the doubled reward on half of users for 4 weeks, with fraud controls in place before it starts.
+* **The need:** more referred paying users at a profit, through growth's ask to "double the reward".
 * **Domain:** Confusion (Cynefin): the decision has parts in two domains. Reward economics is Complicated: separable and readable in a 4-week test. Fraud and saturation are Complex: fraud rings react to the reward size, the pool of friends is shared and finite, and saturation shows over quarters.
 * **Who leads:** split: the Reductionist leads the reward economics, because the separability and time horizon tests pass; the Systems thinker leads fraud and saturation, because the reactors, shared things and feedback with delay tests point there.
+* **Deciding input:** referred paid signups at $40 a signup. Assumed: 675 to 1,080 a month, against a break-even of 814. Only a test reveals it.
+* **Assumption share:** 2 of 5 inputs assumed (the share who refer and invite to paid). The money flips inside the range, from a $7,800 monthly loss to a $14,880 gain, so the call is a 4-week test with fraud controls, not a launch.
 * **What we give up:** up to about $3,900 a month of referral margin during the test if the low case is true (half of $7,800), and a few honest referrals blocked by the device and card check.
 * **Revisit when:** the 4-week test ends for the economics, the end of next quarter for saturation, and at once if referred accounts cancelling within 30 days pass 15%.
 

@@ -46,4 +46,15 @@ A pair gets on the list when it has:
 * A real opposing approach that would decide differently on the same decision.
 * A who-leads-when rule in plain tests that a referee can apply.
 * One worked decision whose numbers check.
-* An end in a call: Go, Go with guardrails, Redesign, or Don't.
+* An end in a call: Go, Go with guardrails, Redesign, Don't, or Get X first.
+
+## Changes from real use
+
+Each pair keeps improving after it ships. The first real use of the first pair, on a partner lead, added a gate in 0.3.0:
+
+* **Frame check:** options are tested against the requester's own words, and an option that misses them is never picked.
+* **Input gate:** when one cheap fact decides between the options, the call is Get X first, with the question and the threshold per option.
+* **Assumption share:** the referee says how much of the call is assumed and whether the call flips across the plausible range.
+* **Lite mode:** one pass with no lens agents, for early decisions.
+
+Every later pair gets the same gate.

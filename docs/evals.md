@@ -1,6 +1,6 @@
 # Evals
 
-The plugin's output is a judgment call, the hardest kind of output to test. So every case aims at one named way a tradeoff card can go wrong, every case also runs without the plugin as a baseline, code checks the structure, and a judge model checks the judgment.
+The plugin's output is a judgment call, the hardest kind of output to test. Four of the cases come from the first real use, which showed the method answering the wrong frame, building a full card on guesses, and costing more than one qualifying question. So every case aims at one named way a tradeoff card can go wrong, every case also runs without the plugin as a baseline, code checks the structure, and a judge model checks the judgment.
 
 ## Results
 
@@ -10,7 +10,7 @@ The plugin's output is a judgment call, the hardest kind of output to test. So e
 
 | Failure mode | Case | Graders | Scored |
 |---|---|---|---|
-| No call, only "it depends" | `discount-card`, `natural-request-fires`, `lenses-independent` | `regex`: "The call:" followed by Go, Redesign or Don't | Both arms |
+| No call, only "it depends" | `discount-card`, `natural-request-fires`, `lenses-independent` | `regex`: "The call:" followed by Go, Redesign, Don't or Get | Both arms |
 | Wrong break-even | `discount-card` | `regex` for 25%, `llm` judge | Both arms |
 | No loop with a delay | `discount-card` | `llm` judge | Both arms |
 | Loops invented for a simple change | `button-copy-complicated` | `llm` judge: Complicated, the Reductionist leads, loop concerns become guardrails | Both arms |
@@ -18,6 +18,10 @@ The plugin's output is a judgment call, the hardest kind of output to test. So e
 | The lenses do not run on their own | `lenses-independent` | `tool_used`: each lens agent launched; `llm` judge: numbers and a loop | Agents: indicator. Judge: both arms |
 | A mixed decision is not split | `confusion-split` | `regex` for the Confusion domain; `llm` judge: each part gets its own leader | Both arms |
 | An emergency gets analyzed instead of handled | `chaotic-act-first` | `regex` for the Chaotic domain; `llm` judge: act now, revisit when stable | Both arms |
+| An option picked that misses the stated need | `off-need-option` | `regex` for the need line; `llm` judge: the call never picks an option that misses the requester's words | Both arms |
+| A full card where one question would do | `get-x-first` | `regex` for a Get X first call; `llm` judge: a question ready to send and a threshold per option | Both arms |
+| A confident call that hides its assumptions | `assumption-flip` | `regex` for the assumption share; `llm` judge: names the cancellation share where the call flips | Both arms |
+| A quick take that runs the full method | `lite-mode` | `tool_used`: no Agent call at all; `llm` judge: a short card | Both arms |
 | The skill does not start on a plain question | `natural-request-fires` | `tool_used: Skill` | Indicator |
 
 All prompts are fictional. The cases live in [`evals/`](../evals).

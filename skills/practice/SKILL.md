@@ -1,6 +1,6 @@
 ---
 name: practice
-description: Practice product judgment on a decision case. Presents a case without the answer, takes the user's reasoning, Cynefin domain and call, grades it on Reductionism, Systems thinking and Referee with specific feedback, then shows the worked tradeoff card. Use when the user wants to practice, drill or exercise product decisions, train product judgment, or test themselves on systems thinking, reductionism or Cynefin.
+description: Practice product judgment on a decision case. Presents a case without the answer, takes the user's reasoning, Cynefin domain and call, grades it on the Gate, Reductionism, Systems thinking and Referee with specific feedback, then shows the worked tradeoff card. Use when the user wants to practice, drill or exercise product decisions, train product judgment, or test themselves on systems thinking, reductionism or Cynefin.
 argument-hint: "[case name, or your own decision]"
 allowed-tools: Read Grep Glob
 ---
@@ -18,6 +18,7 @@ Reference files, relative to this SKILL.md (the same files are at `${CLAUDE_SKIL
 * `references/cases/take-rate.md`
 * `references/cases/cta-copy.md`
 * `references/cases/feature-parity.md`
+* `references/cases/partner-lead.md`
 * `references/rubric.md`: how to grade.
 * `references/archetypes.md`: the eight classic archetypes, for feedback on loops.
 
@@ -35,14 +36,15 @@ Show only "The situation" and the task line, nothing below the solution marker. 
 
 Ask for, in a few lines:
 
+* The need in the requester's words, and the input that decides the call.
 * The direct effect, with a number or two and the arithmetic.
 * At least one loop, with signs, and whether it is R or B.
 * A Cynefin domain and who leads.
-* One call: Go, Go with guardrails, Redesign, or Don't.
+* One call: Go, Go with guardrails, Redesign, Don't, or Get X first.
 
 ## 3. Grade
 
-Use `references/rubric.md`. Score Reductionism, Systems thinking and Referee from 0 to 4 each. Quote the user's own line in each piece of feedback, say what is right or missing, and give the exact fix. Recompute the user's arithmetic and check their R or B against their signs. Do not take points off for a different number when the assumption is stated and the arithmetic checks.
+Use `references/rubric.md`. Score the Gate from 0 to 3, and Reductionism, Systems thinking and Referee from 0 to 4 each. For a case that stops at the gate, score the Gate and the Referee's call line only. Quote the user's own line in each piece of feedback, say what is right or missing, and give the exact fix. Recompute the user's arithmetic and check their R or B against their signs. Do not take points off for a different number when the assumption is stated and the arithmetic checks.
 
 ## 4. Show the worked solution
 
