@@ -84,7 +84,7 @@ Use it when the gate stops before the lenses: the deciding input is unknown, it 
 
 ## Lite card
 
-Use it for a quick take. One pass in the main conversation, no lens agents, no clash table.
+Use it for a quick take. One pass in the main conversation, no lens agents, no clash table. Each line is one short sentence, the whole card stays under about 120 words, and nothing comes after it except the last line below.
 
 # Tradeoff card (lite): <decision>
 

@@ -9,6 +9,8 @@
 * The eval suite now aims each case at a named failure mode: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, an emergency that gets analyzed instead of handled, an option picked that misses the stated need, a full card where one question would do, a call that hides how much of it is assumed, and a quick take that runs the full method. Ten cases, up from three.
 * `scripts/check-polarity.mjs` checks every card the model writes during an eval run: each loop must close and carry the R or B label its signs give it. The worked cases go through the same check in `npm test`.
 * A manual-only `evals` workflow runs the suite on GitHub with a cost ceiling.
+* First eval results: a lean pass scored 0.90 with the plugin against 0.37 without it, 9 of 10 cases passing. The open case, a referral decision the referee calls Complex where the worked case says Confusion, is listed in docs/evals.md.
+* The loop checker reads links written without spaces, with Unicode arrows, or as one chain, and compares node names without regard to case. The lite card has a length limit, and the call line must name the call word for word.
 
 ## 0.2.0 (2026-10-17)
 

@@ -90,6 +90,8 @@ function allFiles(dir = root) {
   for (const name of readdirSync(dir)) {
     if ([".git", "node_modules"].includes(name)) continue;
     const full = join(dir, name);
+    // Local eval runs are gitignored and never shipped.
+    if (relative(root, full).split(sep).join("/") === "evals/results") continue;
     if (statSync(full).isDirectory()) out.push(...allFiles(full));
     else out.push(relative(root, full).split(sep).join("/"));
   }
@@ -336,6 +338,16 @@ test("every eval case has a prompt and typed graders", () => {
     for (const g of graders) assert.match(read(`evals/${c}/graders/${g}`), /^---\ntype: (regex|llm|tool_used)\n/, `${c}/${g}: grader type`);
   }
   assert.ok(existsSync(join(root, "docs/evals.md")), "docs/evals.md explains the evals");
+});
+
+test("the loop checker reads compact links, Unicode arrows and minus signs, and any capitalization", () => {
+  const arrow = String.fromCharCode(0x2192);
+  const minus = String.fromCharCode(0x2212);
+  const card = `${LOOPS_HEADER} Delay | Who reacts and why | Signal to watch |\n|---|---|---|---|---|---|\n| B1 Compact | B | Price${arrow}Demand (${minus}), demand${arrow}price (+) | Weeks | Buyers | Demand |\n`;
+  assert.deepEqual(loopProblems(card), []);
+  assert.match(loopProblems(card.replace("| B |", "| R |")).join("\n"), /1 negative links means B/);
+  const chain = `${LOOPS_HEADER} Delay | Who reacts and why | Signal to watch |\n|---|---|---|---|---|---|\n| R1 Chain | R | Payers -> Invites (+) -> Untapped friends (${minus}) -> payers (${minus}) | Months | Referrers | Invites |\n`;
+  assert.deepEqual(loopProblems(chain), [], "a loop written as one chain is read too");
 });
 
 test("the polarity checker flags eval cards whose loops break the sign rule", () => {

@@ -76,7 +76,7 @@ Follow the referee in `references/lenses.md`:
 * The domain matches the leader: Complicated means the Reductionist leads, Complex means the Systems thinker leads, Confusion means each part names its own leader.
 * The need is quoted, the deciding input is named and marked given or assumed, and the assumption share is stated.
 * The call is not an off-need option. A Get X first card has a question ready to send and a threshold for each option.
-* There is exactly one call.
+* There is exactly one call, and the call line starts with its name word for word: Go, Go with guardrails, Redesign, Don't, or Get <the deciding input> first. Write "Get the shopper count first", not "Ask for the shopper count".
 
 ## 7. Return the card
 
