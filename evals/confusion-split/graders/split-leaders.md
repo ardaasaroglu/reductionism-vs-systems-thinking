@@ -2,8 +2,8 @@
 type: llm
 ---
 
-The decision in the prompt mixes two kinds of problem: the reward economics can be worked out with arithmetic, while fraud and referral saturation depend on how people react over time.
+The prompt holds two parts that can be decided separately and land in different domains. The broken invite link is a known fix with a measurable effect (Clear or Complicated). Doubling the reward depends on how people react over time (Complex).
 
-PASS if the card splits the decision into parts, names the Reductionist as the leader for the reward economics (with a break-even worked out from the numbers in the prompt) and the Systems thinker as the leader for fraud or saturation, and makes exactly one call with a revisit trigger.
+PASS if the card treats them as separate parts: the link fix led by the Reductionist, sized with arithmetic from the prompt (for example the invites and paying users lost each month), and the reward change led by the Systems thinker as a probe, with one call and a revisit trigger.
 
-FAIL if one lens leads the whole decision with no split, if there is no break-even arithmetic, or if there is no single call.
+FAIL if one lens leads both parts, if the two parts are not separated, or if there is no single call.

@@ -4,12 +4,13 @@ The plugin's output is a judgment call, the hardest kind of output to test. Four
 
 ## Results
 
-**Lean pass, 2026-10-20:** Claude Code 2.1.295, the logged-in account's default model, the default judge model, 1 run per case with and without the plugin. Total cost $4.97 at list price, including the reruns below.
+**Lean pass, 2026-10-20:** Claude Code 2.1.295, the logged-in account's default model, the default judge model, 1 run per case with and without the plugin. Total cost $5.63 at list price, including the reruns below.
 
 | Case | With the plugin | Without | Difference |
 |---|---|---|---|
 | `natural-request-fires` | 1.0 | 0.0 | +1.0 |
 | `get-x-first` | 1.0 | 0.0 | +1.0 |
+| `confusion-split` | 1.0 | 0.0 | +1.0 |
 | `discount-card` | 1.0 | 0.2 | +0.8 |
 | `assumption-flip` | 1.0 | 0.5 | +0.5 |
 | `chaotic-act-first` | 1.0 | 0.5 | +0.5 |
@@ -17,14 +18,16 @@ The plugin's output is a judgment call, the hardest kind of output to test. Four
 | `lite-mode` | 1.0 | 0.5 | +0.5 |
 | `off-need-option` | 1.0 | 0.5 | +0.5 |
 | `button-copy-complicated` | 1.0 | 1.0 | 0.0 |
-| `confusion-split` | 0.0 | 0.0 | 0.0 |
-| **Mean** | **0.90** | **0.37** | **+0.53** |
+| **Mean** | **1.00** | **0.37** | **+0.63** |
 
 * **Indicators:** the skill started on the plain question, both lens agents launched in the independence case, and lite mode ran no agents.
-* **Loop check:** all 5 cards with a loops table pass `scripts/check-polarity.mjs`: every loop closes, and every R or B matches its signs.
-* **What the first pass caught.** Three cases missed on the first pass and were rerun after a fix, so the table shows the latest run for those three. `get-x-first`: the card was right, but the call read "Ask for the shopper count" instead of the named call, so the skill now asks for the call's name word for word. `lite-mode`: the skill did not start on "quick take, no full analysis", so the prompt now names the skill; then the lite card ran to 2,188 characters, so the lite card now has a length limit. The loop checker also learned to read links written without spaces, with Unicode arrows, or as one chain.
-* **Still failing:** `confusion-split`. In 2 of 2 runs the referee called the referral decision Complex, with the Reductionist sizing the probe, where the worked case calls it Confusion and splits it. That is a real disagreement about the method, not a formatting slip, and it stays open.
-* **Judge agreement:** not checked yet. The hand-graded sample comes with the 3-run pass.
+* **Loop check:** every card with a loops table that the runs kept passes `scripts/check-polarity.mjs`: every loop closes, and every R or B matches its signs.
+* **The first pass missed on three cases, so the table shows the rerun after each fix.** The first pass scored 0.85 with the plugin and 7 of 10 cases fully passed.
+  * `get-x-first`: the card was right, but the call read "Ask for the shopper count" instead of the named call. The skill now asks for the call's name word for word.
+  * `lite-mode`: the skill did not start on "quick take, no full analysis", so the prompt now names the skill. Then the lite card ran to 2,188 characters, so the lite card now has a length limit.
+  * `confusion-split`: in 2 of 2 runs the referee called a single referral reward change Complex, where the worked case said Confusion. The method now says a single change whose payoff depends on how people react is Complex, and Confusion is for options or parts that can be decided separately and land in different domains. The referral worked case moved to Complex, and this case became a two-part plan: a broken invite link next to the reward change.
+  * The loop checker learned to read links written without spaces, with Unicode arrows, or as one chain.
+* **Judge agreement:** not checked yet. A hand-graded sample comes with the 3-run pass.
 * One run per case is a smoke test, not a measurement.
 
 ## Failure modes and the cases that test them

@@ -90,7 +90,7 @@ Source: Dave Snowden's Cynefin framework, as set out in Snowden and Boone, "A Le
 | Complicated | Parts you can separate and measure: a funnel step, page speed, an onboarding step | Sense, analyze, respond |
 | Complex | People adapt and effects loop back with a delay: pricing, discounts, rewards, notifications, marketplace rules | Probe, sense, respond |
 | Chaotic | Something is breaking now: an outage, a fraud wave, a payment failure | Act, sense, respond |
-| Confusion | You cannot tell yet, or the decision has parts in different domains | Split it, then place each part |
+| Confusion | You cannot tell yet, or the decision's options or parts can be decided separately and land in different domains | Split it, then place each part |
 
 Run these five tests and write the result of each in one line:
 
@@ -100,7 +100,7 @@ Run these five tests and write the result of each in one line:
 * **Shared things.** Does the change draw on something many parts share, such as price, attention or trust? Yes points to Complex.
 * **Time horizon.** Does the outcome that matters land after a test window ends? Yes points to Complex.
 
-Name the tests that decided the domain. If something is breaking right now, the decision is Chaotic whatever the tests say. If its parts land in different domains, it is Confusion.
+Name the tests that decided the domain. If something is breaking right now, the decision is Chaotic whatever the tests say. If its options or parts can be decided separately and land in different domains, it is Confusion: for example, a broken step that only needs a fix, next to a reward change that depends on how people react. A single change whose payoff depends on how people react is Complex, even when its money side is plain arithmetic. The Reductionist then sizes its probe.
 
 ### 2. The domain sets who leads
 

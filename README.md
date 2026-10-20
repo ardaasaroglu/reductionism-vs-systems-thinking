@@ -36,7 +36,7 @@ The full card: [annual-discount.md](skills/practice/references/cases/annual-disc
 | Complicated | Parts you can separate and measure: a funnel step, page speed, an onboarding step | Reductionist | Sense, analyze, respond: size it, test it, ship it, with loop guardrails |
 | Complex | People adapt and effects loop back with a delay: pricing, discounts, rewards, notifications | Systems thinker | Probe, sense, respond: small safe-to-fail probes with holdouts, sized by the Reductionist |
 | Chaotic | Something is breaking now: an outage, a fraud wave, a payment failure | Whoever acts first | Act, sense, respond: stabilize, then run a full card |
-| Confusion | You cannot tell yet, or the parts land in different domains | Split | Break the decision into parts, place each, give each its own leader |
+| Confusion | You cannot tell yet, or the options or parts can be decided separately and land in different domains | Split | Break the decision into parts, place each, give each its own leader |
 
 The referee places a decision with five tests (separability, feedback with delay, reactors, shared things, time horizon), and reversibility sets the step size: a change you can undo in a day ships in one step, while a change customers remember moves in small, time-boxed steps.
 
@@ -57,7 +57,7 @@ These came from the first real use. The full method ran on a partner lead where 
 |---|---|---|
 | [20% off the annual plan](skills/practice/references/cases/annual-discount.md) | Complex | Systems thinker |
 | [Cut onboarding from 5 steps to 3](skills/practice/references/cases/onboarding-steps.md) | Complicated | Reductionist |
-| [Double the referral reward](skills/practice/references/cases/referral-reward.md) | Confusion | Split: Reductionist for reward economics, Systems thinker for fraud and saturation |
+| [Double the referral reward](skills/practice/references/cases/referral-reward.md) | Complex | Systems thinker |
 | [A chatbot to deflect support tickets](skills/practice/references/cases/support-chatbot.md) | Complex | Systems thinker |
 | [A daily push notification](skills/practice/references/cases/daily-push.md) | Complex | Systems thinker |
 | [Raise the marketplace take rate](skills/practice/references/cases/take-rate.md) | Complex | Systems thinker |
@@ -136,7 +136,7 @@ Sources and voting are in [ROADMAP.md](ROADMAP.md). To suggest a pair, use the [
 
 ## Evals
 
-[`evals/`](evals) holds ten cases for `claude plugin eval`, each aimed at one way a tradeoff card can go wrong: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, an emergency that gets analyzed instead of handled, an option picked that misses the stated need, a full card where one question would do, a call that hides how much of it is assumed, and a quick take that runs the full method. Every case also runs without the plugin as a baseline. Code grades structure and a judge model grades judgment: [`scripts/check-polarity.mjs`](scripts/check-polarity.mjs) checks every loop the model writes. First lean pass, Oct 20: the plugin scored 0.90 against 0.37 without it, and 9 of 10 cases passed. [docs/evals.md](docs/evals.md) has the cases, how to run them, and every number, including the case that still fails.
+[`evals/`](evals) holds ten cases for `claude plugin eval`, each aimed at one way a tradeoff card can go wrong: no call, loops invented for a simple change, a wrong break-even, loops labeled against their signs, lenses that do not run on their own, a mixed decision that is not split, an emergency that gets analyzed instead of handled, an option picked that misses the stated need, a full card where one question would do, a call that hides how much of it is assumed, and a quick take that runs the full method. Every case also runs without the plugin as a baseline. Code grades structure and a judge model grades judgment: [`scripts/check-polarity.mjs`](scripts/check-polarity.mjs) checks every loop the model writes. Lean pass, Oct 20: all 10 cases pass with the plugin, a mean score of 1.00 against 0.37 without it. The first pass missed on three cases, and the rerun after each fix is what counts here. [docs/evals.md](docs/evals.md) has the cases, how to run them, and every number, including what the first pass caught.
 
 ## What it reads, writes and sends
 

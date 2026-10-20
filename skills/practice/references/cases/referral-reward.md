@@ -18,8 +18,8 @@ Pocketgrove is a fictional budgeting app with a paid plan at $8 a month.
 
 * **The call:** Go with guardrails: test the doubled reward on half of users for 4 weeks, with fraud controls in place before it starts.
 * **The need:** more referred paying users at a profit, through growth's ask to "double the reward".
-* **Domain:** Confusion (Cynefin): the decision has parts in two domains. Reward economics is Complicated: separable and readable in a 4-week test. Fraud and saturation are Complex: fraud rings react to the reward size, the pool of friends is shared and finite, and saturation shows over quarters.
-* **Who leads:** split: the Reductionist leads the reward economics, because the separability and time horizon tests pass; the Systems thinker leads fraud and saturation, because the reactors, shared things and feedback with delay tests point there.
+* **Domain:** Complex (Cynefin): one change whose payoff depends on how people react. Referrers respond to the reward size, fraud rings react to it, the pool of friends is shared and finite, and saturation shows over quarters. The money side is plain arithmetic, but the lift it depends on is a reaction, so the whole decision is Complex.
+* **Who leads:** Systems thinker because the reactors, shared things and feedback with delay tests point there. The Reductionist sizes the test and its break-even, the role it always has in a Complex decision.
 * **Deciding input:** referred paid signups at $40 a signup. Assumed: 675 to 1,080 a month, against a break-even of 814. Only a test reveals it.
 * **Assumption share:** 2 of 5 inputs assumed (the share who refer and invite to paid). The money flips inside the range, from a $7,800 monthly loss to a $14,880 gain, so the call is a 4-week test with fraud controls, not a launch.
 * **What we give up:** up to about $3,900 a month of referral margin during the test if the low case is true (half of $7,800), and a few honest referrals blocked by the device and card check.
@@ -84,7 +84,7 @@ flowchart LR
 
 ## The call
 
-* **Decision:** Go with guardrails, split by part. Reward economics (Reductionist leads): run the 4-week test and ship $40 only if referred paid signups per user reach 1.63% or more. Fraud and saturation (Systems thinker leads): before the test starts, cap rewards at 10 per referrer per year and block rewards where the friend shares a device or payment card with the referrer.
+* **Decision:** Go with guardrails. Run the 4-week test the Reductionist sized, and ship $40 only if referred paid signups per user reach 1.63% or more. Before the test starts, cap rewards at 10 per referrer per year and block rewards where the friend shares a device or payment card with the referrer.
 * **Guardrails:** stop the $40 arm if referred accounts cancelling within 30 days pass 15% (baseline 8%), or if blocked device and card matches pass 5% of referred signups.
 * **Holdout:** after a ship, 10% of users stay on $20 per referred signup for one quarter, to separate saturation from the reward effect.
 * **Revisit trigger:** the end of the 4-week test, the end of next quarter, or any guardrail breach.
